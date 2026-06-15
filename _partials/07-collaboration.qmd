@@ -1,0 +1,59 @@
+# How can you help me?
+
+I have three asks for the survival-analysis people in the room.
+They run in both directions, but today I am mostly asking.
+
+## Ask 1: review my hazard-based delay estimator
+
+I have an open PR in `primarycensored` that adds non-parametric, hazard-based delay
+estimation alongside the existing parametric families.
+
+- It estimates the delay PMF on fixed bins either directly (a simplex) or through
+  per-bin discrete-time hazards, with a smooth random-walk or IID random-effects prior
+  on `logit(hazard)`.
+- Hazards and PMF are interconvertible (`hazards_to_pmf()`), and both fit through the
+  same doubly-censored, right-truncated likelihood as the parametric distributions.
+- The point is to drop the parametric-shape assumption while keeping the censoring and
+  truncation handling honest.
+
+::: {.callout-note}
+## The ask
+[primarycensored#312](https://github.com/epinowcast/primarycensored/pull/312):
+is the discrete-time hazard formulation right?
+What should I be comparing against: non-parametric MLE, Turnbull's estimator,
+hazard-based interval-censored likelihoods?
+Where would a survival analyst say I have reinvented something, badly?
+:::
+
+## Ask 2: pairwise / contact-interval survival models
+
+I want to push Eben Kenah's pairwise survival idea further and connect it to the
+event-time view of serial and generation intervals.
+
+- [Kenah (2011)](https://doi.org/10.1093/biostatistics/kxq068) treats the contact
+  interval as a time-to-event variable and does survival analysis on who-infects-whom.
+- That feels like the right language for the dependent point process behind generation
+  and serial intervals, not iid survival times.
+- The transmission data are interval-censored on both ends, and the "at-risk" set
+  changes as susceptibles are depleted.
+
+::: {.callout-tip}
+## The ask
+How do we bring contact-interval survival machinery to dependent transmission data?
+Where does it break when start times are unobserved, events are interval-censored, and
+the risk set is itself a function of the process we are estimating?
+:::
+
+## Ask 3: why are you not anxious about double interval censoring?
+
+An honest question. We spend a lot of effort on primary plus secondary interval
+censoring, dynamical bias, and real-time truncation. You handle interval censoring
+routinely and seem far less worried.
+
+- You have Turnbull, interval-censored likelihoods, left and right truncation as
+  standard tools.
+- So: what are we over-engineering, and what is genuinely different on our side?
+- My current guesses: the **start time is itself censored**, not a clean enrolment date;
+  the events are **dependent through transmission**; and we estimate in **real time**, so
+  the data are right-truncated as they arrive.
+- Tell me which of these is real and which is us reinventing your wheels.

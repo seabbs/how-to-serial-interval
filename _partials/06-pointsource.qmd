@@ -1,0 +1,72 @@
+# Extending primary event censoring
+
+## More distributions, more often solved exactly
+
+:::: {.columns}
+::: {.column width="55%"}
+- [primarycensored](https://primarycensored.epinowcast.org/) now
+  dispatches 25 delay distributions, up from 17
+- Eight added for the Stan likelihood: normal, double exponential,
+  Pareto, inverse and scaled-inverse chi-square, Student's t,
+  uniform, von Mises
+  ([#277](https://github.com/epinowcast/primarycensored/pull/277),
+  [#314](https://github.com/epinowcast/primarycensored/pull/314))
+- Lower truncation $L$ may now be negative or $-\infty$, so
+  signed-support delays (normal, logistic, Cauchy, Gumbel) work too
+  ([#311](https://github.com/epinowcast/primarycensored/pull/311))
+- Exact primary-censored CDFs for gamma, log-normal and Weibull
+  under a uniform primary window; everything else falls back to
+  numerical integration
+:::
+::: {.column width="45%"}
+| Delay | Primary | Solution |
+|---|---|---|
+| Gamma | Uniform | Analytic |
+| Log-normal | Uniform | Analytic |
+| Weibull | Uniform | Analytic |
+| Others (22) | Any | Numerical |
+
+::: {.callout-note}
+Analytic forms cut a numerical integral to a few CDF calls, so the
+likelihood is faster and more stable for inference at scale.
+:::
+:::
+::::
+
+::: {.attribution}
+[Analytic solutions
+vignette](https://primarycensored.epinowcast.org/articles/analytic-solutions.html);
+rewritten in CDF-direct form in
+[#306](https://github.com/epinowcast/primarycensored/pull/306)
+:::
+
+## Point-source outbreaks are primary censoring
+
+:::: {.columns}
+::: {.column width="55%"}
+- A point-source outbreak: many cases share one brief, often known,
+  exposure window, then onset follows after the incubation period
+- That shared window is exactly a known primary-censoring interval,
+  common to every case
+- So the incubation-period distribution is the secondary delay, and
+  [primarycensored](https://primarycensored.epinowcast.org/)
+  estimates it directly from onset times
+- Onsets are also reported by day, so secondary censoring and
+  right-truncation come along for free
+:::
+::: {.column width="45%"}
+- Classic outbreak investigation, with censoring-aware estimation
+  doing the arithmetic
+- The same likelihood that fits transmission-pair serial intervals
+  fits common-exposure incubation data
+- Exact solutions matter most here, where the shared window is fixed
+  and reused across thousands of cases
+:::
+::::
+
+::: {.attribution}
+Point-source outbreak: a common-source outbreak with exposure shorter
+than one incubation period
+([CDC, Principles of
+Epidemiology](https://archive.cdc.gov/www_cdc_gov/csels/dsepd/ss1978/lesson1/section11.html))
+:::

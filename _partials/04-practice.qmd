@@ -1,0 +1,100 @@
+# Delay estimation in practice
+
+## What the data let you estimate
+
+- In applied work the estimand is set by how the data were
+  collected, not by which textbook delay you wanted
+- A line list records exposure windows, onset dates, and a source
+  attribution to the day, in real time
+- So the serial interval is rarely estimated on its own: you fit the
+  delays the data structure supports, and read it off
+- Two recent real-data case studies make this concrete
+
+::: {.callout-note}
+Both are built on the same composed observation model as before:
+primary and secondary censoring with real-time truncation, applied
+record by record.
+:::
+
+## Andes virus: Epuyén, 2018-19
+
+:::: {.columns}
+::: {.column width="52%"}
+- First sustained person-to-person spread of a hantavirus: one
+  zoonotic introduction, four human generations, super-spreading at
+  social events
+  ([Martínez et al. 2020](https://doi.org/10.1056/NEJMoa2009040))
+- The line list has two record types, so two estimands fall out:
+  - *index* cases have a point exposure, giving the incubation period
+  - *sourced* cases give source-onset to onset, the serial interval
+- The serial interval is a convolution: signed transmission timing
+  plus the secondary's incubation period, with the infection time
+  unobserved
+:::
+::: {.column width="48%"}
+::: {.callout-tip}
+## Data challenge
+Exposure and onset to the day (interval censoring), real-time
+cut-off (right truncation), and a transmission timing seen only
+through the convolution, so it is weakly identified.
+:::
+
+::: {.callout-note}
+## Lesson
+The index cases pin the incubation period, which is what lets the
+sourced cases identify transmission timing at all.
+The serial interval is not estimated directly: it is what the two
+delays imply.
+:::
+:::
+::::
+
+::: {.attribution}
+Re-analysis and composed-stack fit:
+[epiforecasts/andv-linelist-analysis](https://github.com/epiforecasts/andv-linelist-analysis)
+·
+[EpiAware/CensoredDistributions.jl](https://github.com/EpiAware/CensoredDistributions.jl)
+· data from
+[Martínez et al. 2020](https://doi.org/10.1056/NEJMoa2009040)
+:::
+
+## Bundibugyo Ebola: Isiro, 2012
+
+:::: {.columns}
+::: {.column width="52%"}
+- The only public Bundibugyo line list, from the seven-outbreak DRC
+  deposit
+  ([Rosello et al. 2015](https://doi.org/10.7554/eLife.09015))
+- One case carries four delays: onset to admission, admission to
+  death or discharge, and onset to notification
+- Resolution is competing risks: a case dies or is discharged, never
+  both, and the split is the case-fatality ratio
+- None of these is the serial interval; they are the delays the
+  surveillance and care pathway actually recorded
+:::
+::: {.column width="48%"}
+::: {.callout-tip}
+## Data challenge
+Dates to the day, so every delay is doubly interval censored.
+Several admission dates encode impossible offsets and a notification
+delay was mis-coded upstream, both fixed before fitting.
+:::
+
+::: {.callout-note}
+## Lesson
+What you can estimate is dictated by the data: a care-pathway line
+list yields onset-to-admission, bed-day, and surveillance-lag
+delays, with the case-fatality ratio as a covariate-driven split.
+The transmission interval is simply not in this data.
+:::
+:::
+::::
+
+::: {.attribution}
+Bayesian re-analysis:
+[epiforecasts/bdbv-linelist-analysis](https://github.com/epiforecasts/bdbv-linelist-analysis)
+·
+[EpiAware/CensoredDistributions.jl](https://github.com/EpiAware/CensoredDistributions.jl)
+· data from
+[Rosello et al. 2015](https://doi.org/10.7554/eLife.09015)
+:::

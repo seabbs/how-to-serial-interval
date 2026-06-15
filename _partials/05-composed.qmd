@@ -1,0 +1,108 @@
+# Composing the distributions
+
+## Why composition? A serial interval is built from parts
+
+:::: {.columns}
+::: {.column width="50%"}
+- A serial interval is a generation time plus the difference of two
+  incubation periods
+- Seen through primary and secondary interval censoring, then right
+  truncation
+- Its hazard might come from a within-host model, or be empirical
+- Every model wants a different combination of these parts
+:::
+::: {.column width="50%"}
+- One observation model, many compositions:
+  - GT $+$ incubation difference
+  - censoring $\circ$ truncation
+  - within-host hazard vs empirical hazard
+- We want to express any of them from reusable, validated parts,
+  not re-implement each by hand
+:::
+::::
+
+::: {.callout-note}
+This is the composable-modelling idea applied to delays: build the
+serial interval (and other epi delays) by composing small, tested
+pieces, so the structure is written down once and reused.
+:::
+
+## CensoredDistributions.jl: the parts, today
+
+:::: {.columns}
+::: {.column width="48%"}
+- Plain [Distributions.jl](https://github.com/JuliaStats/Distributions.jl)
+  delays are the leaves
+- Wrappers add primary censoring, interval censoring and right
+  truncation
+- `double_interval_censored` composes all three in one call
+- The result *is* a distribution: `pdf`, `cdf`, `rand`, and fitting
+  with [Turing.jl](https://github.com/TuringLang/Turing.jl)
+:::
+::: {.column width="52%"}
+```julia
+using CensoredDistributions, Distributions
+
+# Gamma delay, primary + secondary
+# censoring, truncated at 15
+d = double_interval_censored(
+    Gamma(2, 3); upper = 15, interval = 1)
+
+pdf(d, 4.0)
+rand(d, 1000)
+```
+
+```julia
+using Turing
+
+@model function fit(values, weights)
+    α ~ truncated(Normal(1, 2), 0, Inf)
+    θ ~ truncated(Normal(1, 2), 0, Inf)
+    d = double_interval_censored(
+        Gamma(α, θ); upper = 15, interval = 1)
+    values ~ weight(d, weights)
+end
+```
+:::
+::::
+
+::: {.callout-note}
+[CensoredDistributions.jl](https://github.com/EpiAware/CensoredDistributions.jl)
+gives the censoring and truncation pieces as composable wrappers over
+Distributions.jl.
+Docs: <https://censoreddistributions.epiaware.org/>
+:::
+
+## In-flight: a language for composing delays
+
+:::: {.columns}
+::: {.column width="50%"}
+- A small set of composers that nest inside each other:
+  - `Sequential` (additive chain of delays)
+  - `Parallel` (branches off a shared origin)
+  - `Competing` / `HazardCompeting` (one of several outcomes, by
+    probability or by racing hazards)
+  - `Select` (a data field picks which sub-model applies)
+- One `compose` front-end lowers a `NamedTuple`, a table, or a matrix
+  to the same stack, with no monolithic tree type
+:::
+::: {.column width="50%"}
+- `event_tree` and `event_names` name every event in the record, so a
+  whole linelist row scores as one distribution
+- `params_table`, `build_priors` and `update` inventory and refit the
+  shared parameters, including ties across branches (`shared`)
+- `intervene`, `swap_child`, `cut_branch`, `splice` edit a tree
+  structurally and return a fresh, valid distribution
+- A composed delay can be censored and truncated on the outside, or
+  carry censored leaves inside
+:::
+::::
+
+::: {.callout-note}
+Why it matters: the many forms a serial interval can take, GT plus an
+incubation difference, within-host vs empirical hazards, censored or
+not, become points in one space of compositions.
+This is the latent-delay composed-distributions work in
+[PR #363](https://github.com/EpiAware/CensoredDistributions.jl/pull/363),
+built from validated parts and fittable with Turing.jl.
+:::

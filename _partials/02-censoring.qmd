@@ -1,0 +1,129 @@
+# A serial interval is a delay, observed imperfectly
+
+## The full problem: double interval censoring with truncation
+
+:::: {.columns}
+::: {.column width="48%"}
+- Daily or weekly data means the primary event (infector's
+  infection or onset) falls in an interval, not a point
+- The secondary event (infectee's onset) falls in an interval too
+- In real time, long delays have not happened yet: observation
+  truncates the data
+- So a serial interval is a delay $T$ seen through two censoring
+  windows and a cutoff
+:::
+::: {.column width="52%"}
+![](figures/fig-double-censoring.png){width="100%"}
+
+::: {.attribution}
+Diagram: this talk · observation model after
+[Charniga et al. (2024)](https://doi.org/10.1371/journal.pcbi.1012520)
+and [primarycensored](https://primarycensored.epinowcast.org/)
+:::
+:::
+::::
+
+::: {.callout-note}
+This is exactly the missing-data machinery of survival analysis:
+interval censoring on both ends, plus right truncation.
+We can strip it to parts and rebuild it.
+:::
+
+## Strip it back: primary interval censoring
+
+:::: {.columns}
+::: {.column width="48%"}
+- Start with the secondary event observed exactly
+- The infector's event $P$ is uniform in the window $[0, w_P]$
+- Mix the delay density $f$ over where $P$ sat in the window: a
+  convolution over the primary window
+- The censored CDF $F_{\text{PEC}}$ has the same form
+:::
+::: {.column width="52%"}
+![](figures/fig-primary-censoring.png){width="100%"}
+
+$$
+f_{\text{PEC}}(t) = \int_{0}^{w_P} g(\tau)\, f(t - \tau)\, d\tau
+$$
+
+::: {.attribution}
+Diagram: this talk · maths after
+[primarycensored](https://primarycensored.epinowcast.org/) ·
+[Charniga et al. (2024)](https://doi.org/10.1371/journal.pcbi.1012520)
+:::
+:::
+::::
+
+::: {.callout-note}
+Analytic solutions exist for the common families: gamma, lognormal,
+Weibull with uniform primary.
+These are "the cases we have" in
+[primarycensored](https://github.com/epinowcast/primarycensored).
+:::
+
+## Add secondary interval censoring
+
+:::: {.columns}
+::: {.column width="48%"}
+- Now the infectee's onset is also binned, to the day
+- The probability of a delay in window $[n, n + w_S]$ is a
+  difference of the primary-censored CDF
+- This is the discrete-time PMF used by `EpiNow2`, `EpiEstim`,
+  done properly rather than by implicit rounding
+:::
+::: {.column width="52%"}
+![](figures/fig-secondary-censoring.png){width="100%"}
+
+$$
+\Pr\!\big(T \in [n, n + w_S]\big)
+  = F_{\text{PEC}}(n + w_S) - F_{\text{PEC}}(n)
+$$
+
+::: {.attribution}
+Diagram: this talk · maths after
+[primarycensored](https://primarycensored.epinowcast.org/) ·
+[CensoredDistributions.jl](https://github.com/EpiAware/CensoredDistributions.jl)
+:::
+:::
+::::
+
+::: {.callout-note}
+A double interval censored likelihood is one convolution composed
+with one CDF difference.
+Nothing exotic.
+:::
+
+## Add right truncation
+
+:::: {.columns}
+::: {.column width="48%"}
+- In real time we only see a pair if the secondary event is before
+  the cutoff $C$
+- Condition on the delay being observed: divide by the CDF at the
+  truncation horizon
+- Right truncation here *is* the nowcasting problem of survival
+  analysis: short delays are over-represented early on
+:::
+::: {.column width="52%"}
+![](figures/fig-truncation.png){width="100%"}
+
+$$
+L^{\text{RT}}
+  = \frac{F_{\text{PEC}}(n + w_S) - F_{\text{PEC}}(n)}
+         {F_{\text{PEC}}(C - P)}
+$$
+
+::: {.attribution}
+Diagram: this talk · maths after
+[primarycensored](https://primarycensored.epinowcast.org/) ·
+[Charniga et al. (2024)](https://doi.org/10.1371/journal.pcbi.1012520)
+:::
+:::
+::::
+
+::: {.callout-note}
+The whole observation model composes: primary censoring, then a
+secondary CDF difference, then truncation.
+`double_interval_censored(dist; upper = C, interval = w_S)` builds
+exactly this.
+:::

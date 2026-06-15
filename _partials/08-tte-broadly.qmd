@@ -1,0 +1,63 @@
+# Time-to-event thinking, more broadly
+
+## The same machinery runs through all of this
+
+The serial interval is one censored, truncated, dependent delay.
+The same survival-analysis ideas reappear right across infectious
+disease modelling, often under other names.
+
+| Survival analysis | Infectious disease modelling |
+|---|---|
+| Right truncation | Real-time observation; the nowcasting problem |
+| Interval censoring | Daily or weekly aggregation of event times |
+| Competing risks | Death vs recovery; ascertainment vs loss |
+| Multi-state model | Compartmental S to E to I to R or D |
+| Frailty / random effects | Individual heterogeneity; superspreading |
+| Relative survival | Excess mortality over a baseline |
+
+::: {.callout-note}
+None of these is metaphor.
+Each is the same likelihood, so the tools transfer in both directions.
+:::
+
+## A worked example: real-time Ebola outbreak size
+
+:::: {.columns}
+::: {.column width="55%"}
+The 2026 DRC Bundibugyo virus (Ebola) outbreak, with cases also in
+Uganda.
+Question: how big is it *now*, when most infections are not yet
+reported?
+
+- A joint Bayesian generative model (Turing.jl): a discrete-time
+  renewal process fitting several streams in one posterior
+- Streams: DRC suspected and confirmed cases and deaths, plus the
+  cases and deaths exported to Uganda
+- An ascertainment model for each surveillance system, so reported
+  counts are read as a censored view of latent infections
+- A no-onward-transmission projection of deaths already committed
+  gives a lower bound on the outbreak's current size
+- Refreshed in real time as each situation report arrives
+:::
+::: {.column width="45%"}
+::: {.callout-note}
+## Same tools, scaled up
+The delays use the same double-interval-censoring machinery from this
+talk; the deaths-vs-recovery split is competing risks; recent counts
+are right-truncated, so this is nowcasting.
+
+[BVDOutbreakSize](https://github.com/epiforecasts/BVDOutbreakSize) ·
+[live report](https://epiforecasts.io/BVDOutbreakSize/stable) ·
+[DOI](https://doi.org/10.5281/zenodo.20312758)
+
+Abbott, Sherratt, Brand, Funk. Compares with McCabe et al.
+:::
+
+::: {.callout-tip}
+Different from the practice section: that was the **2012 Isiro** line
+list (estimating *delays*).
+This is the **2026 DRC** outbreak (estimating *size*).
+Complementary: the Isiro onset-to-death delays inform the priors here.
+:::
+:::
+::::

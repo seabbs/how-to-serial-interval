@@ -1,0 +1,107 @@
+# What is a serial interval?
+
+## Two clocks, often confused
+
+:::: {.columns}
+::: {.column width="50%"}
+- **Serial interval (SI)**: time between *symptom onset* of infector and infectee
+- **Generation interval (GI)**: time between *infections*
+- The SI can be **negative** when transmission happens before symptoms
+- During epidemic growth the *observed* SI **contracts**, so it is not fixed
+
+::: {.callout-note}
+The GI is what transmission models need.
+The SI is what we usually get to observe.
+:::
+:::
+::: {.column width="50%"}
+![](figures/fig-gt-vs-si-timeline.png){width="100%"}
+
+::: {.attribution}
+Source: within-host-informed event-time framework (Abbott et al., working paper, no public URL yet)
+:::
+:::
+::::
+
+## Why do we want it?
+
+:::: {.columns}
+::: {.column width="50%"}
+- Feeds $R_t$ via the renewal equation
+- Links growth rate $r$ to reproduction number $R$
+- Informs forecasting and contact tracing
+- But it is a **proxy** for the generation interval, the quantity transmission models actually need
+:::
+::: {.column width="50%"}
+::: {.callout-note}
+Defined from the right reference cohort, the forward SI links $r$ to $R$ just as the GI does, and the observed SI shortens during growth.
+:::
+
+::: {.attribution}
+Source: [Park et al. (2021)](https://doi.org/10.1073/pnas.2011548118); [Wallinga & Lipsitch (2007)](https://doi.org/10.1098/rspb.2006.3754); [Lehtinen et al. (2021)](https://doi.org/10.1098/rsif.2020.0756)
+:::
+:::
+::::
+
+## A serial interval is just a delay
+
+:::: {.columns}
+::: {.column width="50%"}
+- Estimating an SI = estimating a **time-to-event distribution** from incomplete data
+- A special case of the survival-analysis problem this room already knows
+- Onset times are **interval-censored** (daily data)
+- Real-time data are **right-truncated** (the nowcasting problem)
+- The twist: transmission makes event times **dependent**, and growth tilts the observed delays
+:::
+::: {.column width="50%"}
+::: {.callout-note}
+Roll back the framing: the SI is one delay among many (incubation, onset-to-report, onset-to-death).
+The hard part is the censoring and truncation, not the biology.
+:::
+
+::: {.attribution}
+Source: [Charniga et al. (2024)](https://doi.org/10.1371/journal.pcbi.1012520); [Park et al. (2024)](https://doi.org/10.1101/2024.01.12.24301247)
+:::
+:::
+::::
+
+## How should we estimate and report delays?
+
+:::: {.columns}
+::: {.column width="50%"}
+- **Adjust** for censoring (always), right truncation and dynamical bias (when needed)
+- **Report uncertainty**: credible/confidence intervals, ideally joint posterior samples
+- **Report** mean and spread, key quantiles, and the fitted distribution
+- **Check** negative SIs and uncertain infector pairs
+- **Be transparent**: share de-identified line lists and documented code
+:::
+::: {.column width="50%"}
+::: {.callout-note}
+Charniga et al. (2024) give a checklist and flowchart for estimating and reporting epidemiological delays, with the SI and incubation period as worked examples.
+:::
+
+::: {.attribution}
+Source: [Charniga et al. (2024)](https://doi.org/10.1371/journal.pcbi.1012520)
+:::
+:::
+::::
+
+## The method landscape
+
+:::: {.columns}
+::: {.column width="50%"}
+- Many methods exist for the **same** delay-estimation problem
+- Ignoring censoring, truncation and growth-phase bias gives **divergent, biased** estimates
+- Naive serial-interval fits can bias initial $R$ by up to a factor of **2.6**
+- Standardised, bias-aware methods make results **comparable**
+:::
+::: {.column width="50%"}
+::: {.callout-note}
+Park et al. (2024) review estimation of epidemiological delays and show that overlooked truncation, interval censoring and dynamical bias drive much of the disagreement between published estimates.
+:::
+
+::: {.attribution}
+Source: [Park et al. (2024)](https://doi.org/10.1101/2024.01.12.24301247); [Park et al. (2021)](https://doi.org/10.1073/pnas.2011548118)
+:::
+:::
+::::

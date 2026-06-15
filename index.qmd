@@ -76,7 +76,7 @@ Modeling*, Leiden, 16 June 2026.
   I would like to spend the afternoon there
 :::
 ::: {.column width="40%"}
-- Slides: [seabbs.github.io/how-to-serial-interval](https://seabbs.github.io/how-to-serial-interval)
+- Slides: [samabbott.co.uk/how-to-serial-interval](https://samabbott.co.uk/how-to-serial-interval)
 - [primarycensored](https://primarycensored.epinowcast.org/) ·
   [CensoredDistributions.jl](https://github.com/EpiAware/CensoredDistributions.jl)
 :::

@@ -1,6 +1,5 @@
 ---
 title: "How to serial interval?"
-subtitle: "The onset-to-onset delay that links a transmission pair"
 author: "Sam Abbott"
 institute: "London School of Hygiene & Tropical Medicine"
 title-slide-attributes:
@@ -11,43 +10,39 @@ date-format: "D MMMM YYYY"
 
 ## Talk plan
 
+:::: {.columns}
+::: {.column width="68%"}
 - What is a serial interval, and why do we want it?
-- A serial interval is a delay: censoring, truncation, and reporting
-- Extending primary event censoring: more distributions, point sources
-- A within-host informed approach, and generic alternatives
-- Delay estimation in practice, and time-to-event thinking more broadly
-- Composing the distributions
+- A delay seen through censoring and truncation
+- The same machinery in software, and beyond transmission pairs
+- A within-host informed approach, and a generic alternative
+- Delay estimation in practice
+- Representing composed distributions
 - How can you help me?
-
-::: {.callout-note}
-Lorentz Center workshop, *Connecting Survival Analysis and Infectious Disease
-Modeling*, Leiden, 16 June 2026.
 :::
+::: {.column width="32%"}
+![](figures/fig-qr.png){width="58%"}
+
+::: {.attribution}
+[samabbott.co.uk/how-to-serial-interval](https://samabbott.co.uk/how-to-serial-interval)
+
+Lorentz Center workshop, *Connecting Survival Analysis and Infectious
+Disease Modeling*, Leiden, 16 June 2026.
+:::
+:::
+::::
 
 {{< include _partials/01-intro.qmd >}}
 
 {{< include _partials/02-censoring.qmd >}}
 
-{{< include _partials/06-pointsource.qmd >}}
+{{< include _partials/03-extending.qmd >}}
 
-{{< include _partials/03-paper.qmd >}}
+{{< include _partials/04-paper.qmd >}}
 
-{{< include _partials/04-practice.qmd >}}
+{{< include _partials/05-practice.qmd >}}
 
-{{< include _partials/08-tte-broadly.qmd >}}
-
-## What we can get from the data
-
-- In my view the serial interval **should** rarely be the goal in
-  itself
-- It is a window onto transmission timing, and what we can estimate is
-  set by how the data were collected
-- Exposure windows, symptom-onset recall, contact-tracing structure,
-  and real-time truncation all shape the answer
-- Design the estimand around the data, not the data around a
-  textbook serial interval
-
-{{< include _partials/05-composed.qmd >}}
+{{< include _partials/06-composed.qmd >}}
 
 {{< include _partials/07-collaboration.qmd >}}
 
@@ -55,29 +50,40 @@ Modeling*, Leiden, 16 June 2026.
 
 ## Summary
 
-- A serial interval is a delay observed through censoring and
-  truncation: borrow the survival-analysis machinery
-- Within-host informed models link it to the generation time and the
-  biology; generic contact-interval models need less
-- The same time-to-event thinking runs from delays to real-time
-  outbreak size
-- Applied work shows the estimate is only as good as the data
-  collection behind it
-- Composable distribution tooling lets us express the many ways a
-  serial interval is built, and reuse them across models
+- A serial interval is a delay seen through censoring and truncation:
+  within-interval censoring of both events, and right truncation for
+  dynamical bias
+- Treated simply it is event-to-event; really it is a **composition**
+  of delays, which is where the biology, or a generic hazard, enters
+- Within-host informed models couple the delays; generic
+  contact-interval models need less
+- The estimate is only as good as the data collection and the biases
+  behind it
+- Composable tooling lets us write these delays once and reuse them
+  across model types
 
 ## Thank you
 
 :::: {.columns}
-::: {.column width="60%"}
-- The serial interval is the onset-to-onset delay within a
-  transmission pair, seen through censoring and truncation
-- The interesting work is at the interface with survival analysis, and
-  I would like to spend the afternoon there
+::: {.column width="62%"}
+An ecosystem for estimating and using delays:
+
+- [epidist](https://epidist.epinowcast.org/) — individual-level delay
+  estimation
+- [primarycensored](https://primarycensored.epinowcast.org/) —
+  censored, truncated delays
+- [CensoredDistributions.jl](https://github.com/EpiAware/CensoredDistributions.jl)
+  — composing delays
+- [EpiNow2](https://epiforecasts.io/EpiNow2/) and
+  [epinowcast](https://package.epinowcast.org/) — $R_t$ and nowcasting
+- [EpiBranch.jl](https://github.com/epiforecasts/EpiBranch.jl) —
+  branching-process models
 :::
-::: {.column width="40%"}
-- Slides: [samabbott.co.uk/how-to-serial-interval](https://samabbott.co.uk/how-to-serial-interval)
-- [primarycensored](https://primarycensored.epinowcast.org/) ·
-  [CensoredDistributions.jl](https://github.com/EpiAware/CensoredDistributions.jl)
+::: {.column width="38%"}
+![](figures/fig-qr.png){width="62%"}
+
+::: {.attribution}
+[samabbott.co.uk/how-to-serial-interval](https://samabbott.co.uk/how-to-serial-interval)
+:::
 :::
 ::::

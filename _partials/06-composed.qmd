@@ -4,7 +4,7 @@
 
 :::: {.columns}
 ::: {.column width="60%"}
-- As we have seen, many epidemiological delays are themselves
+- As we have seen, many epidemiological delays can be thought of as
   **composed** of delays between events
 - The serial interval is a generation time plus an incubation
   difference, observed through primary and secondary censoring and

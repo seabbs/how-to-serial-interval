@@ -62,8 +62,9 @@ Diagram: this talk, after the point-source incubation idea of
   - **`epidist`** — individual-level delays from line lists
   - **`EpiNow2`** — delays in `estimate_dist`, `estimate_truncation`,
     `estimate_infections`
-  - **`epinowcast`** — population-level nowcasting via reporting
-    **hazards**, with uncertainty on the counts
+  - **`epinowcast`** — population-level nowcasting: $f$'s **hazard
+    modified** over time, or straight discrete-time hazards; with
+    uncertainty on the counts
 - How to choose between them is an open question — is there guidance in
   the time-to-event literature?
 :::
@@ -74,9 +75,9 @@ $$ \textstyle\prod_i f(t_i) $$
 `EpiNow2` — convolve incidence
 $$ C_t = \sum_{\tau} f(\tau)\, I_{t-\tau} $$
 
-`epinowcast` — reporting hazards on counts
-$$ \mathbb{E}[n_{t,d}] = \lambda_t\, p_d $$
-$$ p_d = h_d\textstyle\prod_{d'<d}(1-h_{d'}) $$
+`epinowcast` — $f$'s hazard, modified (or free)
+$$ \operatorname{logit} h_d = \operatorname{logit} h_d^{f} + \text{effects} $$
+$$ \mathbb{E}[n_{t,d}] = \lambda_t\, h_d\textstyle\prod_{d'<d}(1-h_{d'}) $$
 
 ::: {.attribution}
 [epidist](https://epidist.epinowcast.org/) ·

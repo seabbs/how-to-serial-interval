@@ -29,7 +29,7 @@ event-time view of serial and generation intervals.
 - [Kenah (2011)](https://doi.org/10.1093/biostatistics/kxq068) treats the contact
   interval as a time-to-event variable and does survival analysis on who infected whom.
 - That feels like the right language for the dependent point process behind generation
-  and serial intervals, not iid survival times.
+  and serial intervals.
 - The transmission data are interval-censored on both ends, and the at-risk set changes
   as susceptibles are depleted.
 

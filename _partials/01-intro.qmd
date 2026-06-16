@@ -56,6 +56,8 @@ working paper)
 - Also feeds forecasting and contact tracing
 - But the SI is a **proxy** for the generation interval, the quantity
   some transmission models need
+- And do we want the *measure* itself? The transmission-pair data are
+  what is valuable; the serial interval is just one summary of them
 :::
 ::: {.column width="48%"}
 ::: {.callout-note}

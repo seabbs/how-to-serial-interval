@@ -12,6 +12,8 @@
   contaminate pairs
 - The reference cohort matters: which event reporting is conditioned on
 - Observation is often **missing not at random**
+- Other pathogens compose differently: vector-borne diseases add an
+  **extrinsic incubation period** in the vector, and further delays
 :::
 ::: {.column width="45%"}
 ::: {.attribution}

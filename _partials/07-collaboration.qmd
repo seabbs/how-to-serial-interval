@@ -89,3 +89,18 @@ Model:
 Help us match tool to question — and tell us where a survival-analysis
 model would simply be the better choice.
 :::
+
+## Ask 6: how should the reporting advice adapt for survival methods?
+
+- [Charniga et al. (2024)](https://doi.org/10.1371/journal.pcbi.1012520)
+  give best-practice advice for estimating and reporting delay
+  distributions, written largely from the modelling side
+- Survival analysis brings Turnbull, interval-censored likelihoods,
+  competing risks, and frailty — with their own reporting conventions
+
+::: {.callout-note}
+## The ask
+How should that advice be **updated** to fold in survival-analysis
+methods? Help us write the next version of the checklist — one that
+speaks both languages.
+:::

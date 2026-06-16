@@ -23,7 +23,7 @@ PLOS Comput Biol, CC-BY 4.0
 :::
 :::
 ::: {.column width="60%"}
-![](figures/fig-charniga-flowchart.png){height="1000px"}
+![](figures/fig-charniga-flowchart.png){height="860px"}
 :::
 ::::
 

@@ -8,13 +8,12 @@
   censoring and truncation built in
 - **Analytic** primary-censored CDFs for gamma, lognormal, and Weibull
   with a uniform primary; numerical integration otherwise
-- Signed support too (normal, logistic, Laplace, Cauchy, Gumbel) for
+- Signed support (normal, logistic, Laplace, Cauchy, Gumbel) for
   delays that can be negative
 - And a **non-parametric, hazard-based** estimator
-  ([#312](https://github.com/epinowcast/primarycensored/pull/312)) for
-  when you would rather not pick a family — it needs an eye on it, and
-  is not clearly a good idea: for onward reuse we have little guidance
-  yet on how to estimate or report these
+  ([#312](https://github.com/epinowcast/primarycensored/pull/312)) — it
+  needs an eye on it, and is not clearly a good idea: for onward reuse
+  we have little guidance yet on how to estimate or report these
 :::
 ::: {.column width="45%"}
 ::: {.callout-note}

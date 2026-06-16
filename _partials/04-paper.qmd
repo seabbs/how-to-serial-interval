@@ -65,6 +65,10 @@ $$
 V(t) = A\, e^{rt}
 \left\{1 + \tfrac{r}{d}\,e^{\kappa(t-m)}\right\}^{-(r+d)/\kappa}
 $$
+
+- In reality it is often more complex, with substantial individual-level
+  variation
+  ([Russell et al. 2024](https://doi.org/10.1371/journal.pbio.3002463))
 :::
 ::: {.column width="58%"}
 ![](figures/pathogen_load_varying_kappa_peak_at_m.png){width="100%"}

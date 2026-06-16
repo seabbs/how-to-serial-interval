@@ -45,9 +45,7 @@ part of what we are estimating?
 We spend a lot of effort on primary plus secondary interval censoring, dynamical bias,
 and real-time truncation. You handle interval censoring routinely and seem far less worried.
 
-- You have Turnbull, interval-censored likelihoods, and left and right truncation as
-  standard tools.
-- So what are we over-engineering, and what is genuinely different on our side?
+- Are we over-engineering this, and what is genuinely different on our side?
 - My guesses: the **start time is itself censored**, and the events are **dependent
   through transmission** — you estimate in real time too, so it is probably not that.
 

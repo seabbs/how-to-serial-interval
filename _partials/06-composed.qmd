@@ -102,8 +102,9 @@ logpdf(si, t);   rand(si)
 # counts: convolve with incidence (EpiNow2)
 expected_cases = convolve(infections, si)
 
-# mechanistic: a hazard for an ODE / Catalyst
-λ = delay_hazard(si)
+# mechanistic: use its hazard as a transition
+# rate, e.g. in a Catalyst reaction network
+h = delay_hazard(si)
 ```
 
 ::: {.callout-note}

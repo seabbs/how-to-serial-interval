@@ -11,8 +11,6 @@
   before the infector's, for example with presymptomatic transmission
 - The GI is what *some* transmission models need; the SI is usually
   what we get to observe
-- They share a mean, but coincide most closely only without
-  presymptomatic transmission — that is what pulls them apart
 :::
 ::: {.column width="60%"}
 ![](figures/fig-gt-vs-si-timeline.png){width="100%"}

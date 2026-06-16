@@ -106,21 +106,16 @@ logpdf(si, t);   rand(si)
 # counts: convolve with incidence (EpiNow2)
 expected = convolve(infections, si)
 
-# mechanistic: the hazard at time t ...
-hazard(si, t)
-# ... feeding a Catalyst reaction network, e.g.
-# a gamma delay as a linear chain
-rn = @reaction_network begin
-    k*γ, I1 --> I2
-    k*γ, I2 --> I3
-    k*γ, I3 --> R
-end
+# mechanistic: lower composed delays onto a
+# Catalyst reaction network (linear-chain trick)
+using Catalyst
+seir = seir_reaction_network(latent, infectious)
 ```
 
 ::: {.callout-note}
 Simulation and `logpdf` for individual data, convolution for counts, or
-a reaction network for a compartmental model — and, in principle,
-multi-state.
+— via the **linear-chain trick** — a Catalyst reaction network for a
+compartmental model.
 :::
 :::
 ::::

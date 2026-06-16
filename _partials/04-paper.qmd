@@ -121,8 +121,7 @@ Framework: Jamieson et al. (working paper)
 :::: {.columns}
 ::: {.column width="40%"}
 - Dutch household transmission pairs, Delta replaced by Omicron
-- Shorter mean generation time for Omicron (~3.1 d) than
-  Delta (~4.0 d)
+- Shorter mean generation time for Omicron than Delta
 - Lower WAIC and LOOIC than a lognormal generation-time model, for
   both strains
 - Timing variation is allocated to interpretable components

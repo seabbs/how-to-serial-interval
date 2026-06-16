@@ -13,11 +13,6 @@
 - The reference cohort matters: forward versus backward intervals
 :::
 ::: {.column width="45%"}
-::: {.callout-note}
-This is where the survival-analysis and modelling views most need each
-other.
-:::
-
 ::: {.attribution}
 [Hart et al. 2022](https://doi.org/10.7554/eLife.70767);
 [Park et al. 2021](https://doi.org/10.1073/pnas.2011548118)

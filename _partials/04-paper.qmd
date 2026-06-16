@@ -207,6 +207,13 @@ viral load:
   ([Kenah 2011](https://doi.org/10.1093/biostatistics/kxq068))
 - Contact intervals are right-censored, so survival analysis is the
   natural tool, and the natural meeting point with this room
+
+::: {.callout-note}
+For an ordered pair $(i,j)$, the **contact interval** $\tau_{ij}$ is the
+time from $i$'s onset of infectiousness to the first infectious contact
+from $i$ to $j$ (one able to infect a susceptible) — right-censored if
+none occurs before $i$ is removed.
+:::
 :::
 ::: {.column width="60%"}
 ![](figures/fig-contact-interval.png){width="100%"}

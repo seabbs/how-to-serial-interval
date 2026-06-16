@@ -34,7 +34,8 @@ working paper)
   - infectiousness onset $h_I$
   - symptom onset $h_S$
   - transmission $p_{\text{trans}}$
-- So $LP$, $U$, and $IP_1$ are **coupled**, not separate marginals
+- So $LP$, $U$, and $IP_1$ are **coupled** by the viral load, not
+  separate marginals
 - The delays stay mutually consistent, and the parameters keep a
   biological meaning
 - Builds on the within-host to Burr-distribution idea of

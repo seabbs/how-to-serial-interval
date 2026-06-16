@@ -11,6 +11,8 @@
 - **Who infected whom** is uncertain; coprimary and tertiary cases
   contaminate pairs
 - The reference cohort matters: forward versus backward intervals
+- Observation is often **missing not at random**: which pairs we see
+  depends on the very timing we are trying to estimate
 :::
 ::: {.column width="45%"}
 ::: {.attribution}

@@ -208,8 +208,6 @@ viral load:
 - This contact interval is exactly our $U$ (infectiousness onset to
   transmission), so $GT = LP + U$ — now with $U$ from a generic hazard,
   not $V(t)$
-- Contact intervals are right-censored, so survival analysis is the
-  natural tool, and the natural meeting point with this room
 
 ::: {.callout-note}
 For an ordered pair $(i,j)$, the **contact interval** $\tau_{ij}$ is the

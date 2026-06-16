@@ -55,16 +55,18 @@ end
 
 ## Building a serial interval from parts
 
-:::: {.columns}
-::: {.column width="44%"}
-![](figures/fig-event-time-dag.png){width="100%"}
+![](figures/fig-si-compose.png){width="94%"}
 
-::: {.callout-note}
-The code mirrors the DAG. Covariates can modify it — on the **hazard
-scale**, or within individual delay **leaves**.
+:::: {.columns}
+::: {.column width="42%"}
+- In development: compose the delays between events
+- Additive chains, competing outcomes by racing hazards, or a data
+  field that selects the sub-model
+- Then wrap the whole delay in the observation model
+- Covariates can modify it — on the **hazard scale**, or within
+  individual delay **leaves**
 :::
-:::
-::: {.column width="56%"}
+::: {.column width="58%"}
 ```julia
 # additive chains of delays
 gt = Sequential(latent_period, transmission_delay)

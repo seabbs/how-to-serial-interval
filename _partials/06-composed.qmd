@@ -53,9 +53,7 @@ end
 :::
 ::::
 
-## Building a serial interval from parts
-
-![](figures/fig-si-compose.png){width="94%"}
+## Building distributions from parts
 
 :::: {.columns}
 ::: {.column width="42%"}

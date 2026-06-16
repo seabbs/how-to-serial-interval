@@ -113,8 +113,8 @@ $$ F_{\mathrm{cens}}(q) = \sum_k a_k(q)\, T_f(\xi_k; q) $$
 | lognormal | numerical |
 
 ::: {.attribution}
-Transform extension to non-uniform windows (working paper); logistic
-and Gumbel windows after
+Transform extension to non-uniform windows: Jamieson et al. (working
+paper); logistic and Gumbel windows after
 [Egan & Hall (2011)](https://doi.org/10.1097/EDE.0b013e31820937c6)
 :::
 :::

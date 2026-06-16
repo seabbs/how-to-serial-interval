@@ -122,6 +122,8 @@ parsimonious baseline; other activation functions give other families
 - It can only start once infectiousness has begun, so $U$ is timed from
   $LP=\ell$ and $GT = LP + U$ averages over the latent period (itself
   given by $h_I$)
+- $\beta_I$ and $\beta_S$ are taken distinct, but may be related — if
+  symptoms track infectiousness — tying the delays together more tightly
 :::
 
 ::: {.attribution}

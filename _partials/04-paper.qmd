@@ -104,8 +104,12 @@ $$ \lambda_T(u \mid LP{=}\ell) = c\,\beta_T\, V(\ell + u) $$
 ::::
 
 ::: {.callout-note}
-Simple limits recover familiar shapes: a constant hazard gives an
-exponential, power-of-time a Weibull, and staged events a gamma.
+**Why this form?** As a parsimonious baseline each rate is taken
+proportional to load, $h_Z = \beta_Z V(t)$ — more pathogen, the more
+likely the event. It is an assumption: other activation functions
+$\lambda_Z(\cdot)$ give other delay families. A separable $V(t)\,g(t)$
+recovers the Burr; constant, power-of-time, or staged limits give the
+exponential, Weibull, or gamma.
 :::
 
 ::: {.attribution}

@@ -70,7 +70,7 @@ end
 inc = double_interval_censored(Gamma(2, 1); interval = 1)
 
 # an additive chain of delays
-si = Sequential(generation_time, inc)
+si = sequential(generation_time, inc)
 
 # competing outcomes, by racing hazards
 resolve = competing(:death => death, :discharge => discharge)

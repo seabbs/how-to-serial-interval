@@ -138,7 +138,6 @@ Framework: Jamieson et al. (working paper)
 - Shorter mean generation time for Omicron than Delta
 - Lower WAIC and LOOIC than a lognormal generation-time model, for
   both strains
-- Timing variation is allocated to interpretable components
 :::
 ::: {.column width="60%"}
 ![](figures/figure3_generation_mean_sd_lognormal_vs_updatedV_obspair.png){width="100%"}

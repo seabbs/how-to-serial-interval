@@ -56,15 +56,17 @@ end
 ## Building a serial interval from parts
 
 :::: {.columns}
-::: {.column width="42%"}
-- In development: compose the delays between events
-- Additive chains, competing outcomes by racing hazards, or a data
-  field that selects the sub-model
-- Then wrap the whole delay in the observation model
+::: {.column width="44%"}
+![](figures/fig-event-time-dag.png){width="100%"}
+
+::: {.callout-note}
+The code mirrors the DAG. Covariates can modify it — on the **hazard
+scale**, or within individual delay **leaves**.
 :::
-::: {.column width="58%"}
+:::
+::: {.column width="56%"}
 ```julia
-# additive chain of delays
+# additive chains of delays
 gt = Sequential(latent_period, transmission_delay)
 si = Sequential(gt, incubation_difference)
 
@@ -100,16 +102,23 @@ In-flight composer work:
 logpdf(si, t);   rand(si)
 
 # counts: convolve with incidence (EpiNow2)
-expected_cases = convolve(infections, si)
+expected = convolve(infections, si)
 
-# mechanistic: use its hazard as a transition
-# rate, e.g. in a Catalyst reaction network
-h = delay_hazard(si)
+# mechanistic: the hazard at time t ...
+hazard(si, t)
+# ... feeding a Catalyst reaction network, e.g.
+# a gamma delay as a linear chain
+rn = @reaction_network begin
+    k*γ, I1 --> I2
+    k*γ, I2 --> I3
+    k*γ, I3 --> R
+end
 ```
 
 ::: {.callout-note}
-Simulation and `logpdf` for individual data, convolution for counts,
-or a hazard for a compartmental model — and, in principle, multi-state.
+Simulation and `logpdf` for individual data, convolution for counts, or
+a reaction network for a compartmental model — and, in principle,
+multi-state.
 :::
 :::
 ::::

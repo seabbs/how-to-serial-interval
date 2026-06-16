@@ -33,12 +33,13 @@ non-parametric estimator:
 
 :::: {.columns}
 ::: {.column width="40%"}
-- A common-source outbreak shares one exposure window — exactly a
-  known primary-censoring interval
+- A common-source outbreak shares one exposure window
+- The distribution of exposure times within the source may itself
+  differ — it need not be uniform
 - Estimate the incubation period from onset dates; the same censoring
   and dynamical-bias issues apply
-- Ian Hall's Legionnaires' work does this, deconvolving onsets into a
-  release time and an incubation period
+- A Legionnaires' model in use by UKHSA does this, deconvolving onsets
+  into a release time and an incubation period
   ([Egan & Hall 2011](https://doi.org/10.1097/EDE.0b013e31820937c6))
 - It extends naturally to **multiple candidate sources**
 :::

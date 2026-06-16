@@ -104,7 +104,7 @@ symptom onset $\to IP$
 $$ h_S(t) = \beta_S\, V(t) $$
 
 transmission $\to U$ (so $GT = LP + U$)
-$$ \lambda_T(u \mid LP{=}\ell) = c\,\beta_T\, V(\ell + u) $$
+$$ \lambda_T(u \mid LP{=}\ell) = c\,p_{\text{trans}} = c\,\beta_T\, V(\ell + u) $$
 :::
 ::::
 
@@ -115,8 +115,9 @@ gives the Burr).
 
 - $h_S = \beta_S V$: no fixed symptom threshold, so a stochastic
   activation
-- $\lambda_T = c\,\beta_T V$: a **contact** (rate $c$) and infection
-  given contact, only after infectiousness — so $U$ is timed from $LP$
+- $\lambda_T = c\,p_{\text{trans}}$ with $p_{\text{trans}}=\beta_T V$: a
+  **contact** (rate $c$) and infection given contact, only after
+  infectiousness — so $U$ is timed from $LP$
 - $\beta_I, \beta_S$ may be related if symptoms track infectiousness
 :::
 

@@ -4,8 +4,9 @@
 
 :::: {.columns}
 ::: {.column width="55%"}
-- A widening set of delay families, with the primary and secondary
-  censoring and truncation built in
+- Really a **wrapper** for any delay distribution: it adds the primary
+  and secondary censoring and truncation around whatever family you
+  choose
 - **Analytic** primary-censored CDFs for gamma, lognormal, and Weibull
   with a uniform primary; numerical integration otherwise
 - Signed support (normal, logistic, Laplace, Cauchy, Gumbel) for

@@ -69,8 +69,11 @@ end
 # build delays between events from parts
 si = sequential(generation_time, incubation)
 
-# competing outcomes, by racing hazards
-resolve = competing(:death => death, :discharge => discharge)
+# competing outcomes by probability (a CFR) ...
+resolve = competing(:death => (death, cfr),
+                   :discharge => (discharge, 1 - cfr))
+# ... or by racing hazards:
+# competing(:death => death, :discharge => discharge)
 
 # a record field selects the sub-model
 delay = selecting(:index => incubation, :sourced => si)

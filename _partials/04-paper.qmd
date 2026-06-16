@@ -205,6 +205,9 @@ viral load:
   from infectiousness onset to infectious contact is a transmission
   hazard, with no within-host trajectory needed
   ([Kenah 2011](https://doi.org/10.1093/biostatistics/kxq068))
+- This contact interval is exactly our $U$ (infectiousness onset to
+  transmission), so $GT = LP + U$ — now with $U$ from a generic hazard,
+  not $V(t)$
 - Contact intervals are right-censored, so survival analysis is the
   natural tool, and the natural meeting point with this room
 
@@ -212,7 +215,9 @@ viral load:
 For an ordered pair $(i,j)$, the **contact interval** $\tau_{ij}$ is the
 time from $i$'s onset of infectiousness to the first infectious contact
 from $i$ to $j$ (one able to infect a susceptible) — right-censored if
-none occurs before $i$ is removed.
+none occurs before $i$ is removed. Kenah models it through its hazard,
+$f(\tau)=\lambda(\tau)\,e^{-\int_0^\tau \lambda}$, with covariates as a
+Cox-type $\lambda(\tau\mid X)=\lambda_0(\tau)\,e^{\beta^\top X}$.
 :::
 :::
 ::: {.column width="60%"}

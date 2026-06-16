@@ -109,21 +109,15 @@ $$ \lambda_T(u \mid LP{=}\ell) = c\,\beta_T\, V(\ell + u) $$
 ::::
 
 ::: {.callout-note}
-**Why these forms?** Each rate is taken proportional to load as a
-parsimonious baseline; other activation functions give other families
-(a separable $V(t)\,g(t)$ gives the Burr).
+**Why these forms?** Each rate is proportional to load as a parsimonious
+baseline; other activation functions give other families ($V(t)\,g(t)$
+gives the Burr).
 
-- $h_S = \beta_S V(t)$: symptoms have no fixed load threshold — they
-  track replication, host response, and detection — so onset is a
-  stochastic activation that rises with load
-- $\lambda_T = c\,\beta_T V(t)$: transmission needs a **contact**
-  (rate $c$) and infection given contact (probability rising with
-  shedding, so with load); $c$ is held constant for parsimony
-- It can only start once infectiousness has begun, so $U$ is timed from
-  $LP=\ell$ and $GT = LP + U$ averages over the latent period (itself
-  given by $h_I$)
-- $\beta_I$ and $\beta_S$ are taken distinct, but may be related — if
-  symptoms track infectiousness — tying the delays together more tightly
+- $h_S = \beta_S V$: no fixed symptom threshold, so a stochastic
+  activation
+- $\lambda_T = c\,\beta_T V$: a **contact** (rate $c$) and infection
+  given contact, only after infectiousness — so $U$ is timed from $LP$
+- $\beta_I, \beta_S$ may be related if symptoms track infectiousness
 :::
 
 ::: {.attribution}

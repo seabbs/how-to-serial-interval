@@ -104,12 +104,16 @@ $$ \lambda_T(u \mid LP{=}\ell) = c\,\beta_T\, V(\ell + u) $$
 ::::
 
 ::: {.callout-note}
-**Why this form?** As a parsimonious baseline each rate is taken
-proportional to load, $h_Z = \beta_Z V(t)$ — more pathogen, the more
-likely the event. It is an assumption: other activation functions
-$\lambda_Z(\cdot)$ give other delay families. A separable $V(t)\,g(t)$
-recovers the Burr; constant, power-of-time, or staged limits give the
-exponential, Weibull, or gamma.
+**Why these forms?** Each rate is taken proportional to load as a
+parsimonious baseline; other activation functions give other families
+(a separable $V(t)\,g(t)$ gives the Burr).
+
+- $h_S = \beta_S V(t)$: symptoms have no fixed load threshold — they
+  track replication, host response, and detection — so onset is a
+  stochastic activation that rises with load
+- $\lambda_T = c\,\beta_T V(t)$: transmission needs a **contact**
+  (rate $c$) and infection given contact (probability rising with
+  shedding, so with load); $c$ is held constant for parsimony
 :::
 
 ::: {.attribution}

@@ -51,26 +51,29 @@ and real-time truncation. You handle interval censoring routinely and seem far l
 
 ## Ask 4: what would a survival-time model for outbreak size look like?
 
-- Here we estimate the **current size** of the 2026 DRC Bundibugyo
-  (Ebola) outbreak in real time — not a delay, but the same toolkit
-- A joint Bayesian renewal model over suspected and confirmed cases
-  and deaths, cross-border exports, isolation occupancy, and
-  recoveries, with ascertainment; deaths already committed give a
-  no-onward-transmission lower bound
-
-![](figures/fig-bvd-model.png){width="80%"}
+:::: {.columns}
+::: {.column width="30%"}
+- We estimate the **current size** of the 2026 DRC Bundibugyo (Ebola)
+  outbreak in real time — not a delay, but the same toolkit
+- A joint Bayesian renewal model over all these streams, with
+  ascertainment; committed deaths give a lower bound
 
 ::: {.callout-note}
 ## The ask
-What would a survival / time-to-event model for outbreak size look
-like? Where would competing-risks or multi-state thinking help?
+What would a survival / time-to-event model look like? Where would
+competing-risks or multi-state thinking help?
 :::
+:::
+::: {.column width="70%"}
+![](figures/fig-bvd-model.png){width="100%"}
 
 ::: {.attribution}
 Model:
 [BVDOutbreakSize](https://github.com/epiforecasts/BVDOutbreakSize)
 (Abbott, Sherratt, Brand, Funk); diagram this talk
 :::
+:::
+::::
 
 ## Ask 5: which delay tool, when — or none of them?
 

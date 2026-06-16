@@ -4,8 +4,8 @@
 
 :::: {.columns}
 ::: {.column width="38%"}
-- We treated the SI as one event-to-event delay; really it is a
-  **composition** of delays
+- We treated the SI as one event-to-event delay; it can be thought of
+  as a **composition** of delays
 - Onsets are what we see; infection and transmission are latent
 
 $$ GT = LP + U $$

@@ -91,19 +91,19 @@ $$ p_d = h_d\textstyle\prod_{d'<d}(1-h_{d'}) $$
 
 :::: {.columns}
 ::: {.column width="52%"}
-- The censored CDF is the delay convolved with the primary-event
-  window, and reduces to a Laplace-type transform of the delay density
+- The censored CDF is the delay density $f$ convolved with the
+  primary-event window $H_w$:
 
-$$
-F_{\mathrm{cens}}(q) = \int_0^q H_w(q-u)\, f(u)\, du
-$$
-$$
-T_f(\xi;\tau) = \int_0^\tau e^{\xi u}\, f(u)\, du
-$$
+$$ F_{\mathrm{cens}}(q) = \int_0^q H_w(q-u)\, f(u)\, du $$
 
-- The **window** (uniform, exponentially tilted for growth or decline,
-  logistic, Gumbel) sets which transforms are needed; the **delay
-  family** sets whether they are analytic
+- Expanding the window as exponentials reduces this to **Laplace-type
+  transforms** $T_f(\xi;\tau)=\int_0^\tau e^{\xi u} f(u)\,du$ of $f$:
+
+$$ F_{\mathrm{cens}}(q) = \sum_k a_k(q)\, T_f(\xi_k; q) $$
+
+- The **window** (uniform, exponentially tilted, logistic, Gumbel)
+  sets the $a_k, \xi_k$; the **delay family** sets whether $T_f$ is
+  analytic
 :::
 ::: {.column width="48%"}
 | Delay family | Transform |

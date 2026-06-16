@@ -3,7 +3,7 @@
 ## How do we currently suggest people estimate and report a delay distribution?
 
 :::: {.columns}
-::: {.column width="38%"}
+::: {.column width="34%"}
 - Adjust for **within-interval censoring of both events** (always)
 - **Right truncation** is the correction for dynamical
   (epidemic-phase) bias
@@ -22,8 +22,8 @@ Flowchart: Fig 3 of
 PLOS Comput Biol, CC-BY 4.0
 :::
 :::
-::: {.column width="62%"}
-![](figures/fig-charniga-flowchart.png){height="900px"}
+::: {.column width="66%"}
+![](figures/fig-charniga-flowchart.png){height="1000px"}
 :::
 ::::
 

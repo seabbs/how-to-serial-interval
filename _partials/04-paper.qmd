@@ -114,6 +114,9 @@ parsimonious baseline; other activation functions give other families
 - $\lambda_T = c\,\beta_T V(t)$: transmission needs a **contact**
   (rate $c$) and infection given contact (probability rising with
   shedding, so with load); $c$ is held constant for parsimony
+- It can only start once infectiousness has begun, so $U$ is timed from
+  $LP=\ell$ and $GT = LP + U$ averages over the latent period (itself
+  given by $h_I$)
 :::
 
 ::: {.attribution}

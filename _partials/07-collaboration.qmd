@@ -53,9 +53,10 @@ and real-time truncation. You handle interval censoring routinely and seem far l
 
 - Here we estimate the **current size** of the 2026 DRC Bundibugyo
   (Ebola) outbreak in real time — not a delay, but the same toolkit
-- A joint Bayesian renewal model over cases, deaths, cross-border
-  exports, isolation occupancy, and recoveries, with ascertainment;
-  deaths already committed give a no-onward-transmission lower bound
+- A joint Bayesian renewal model over suspected and confirmed cases
+  and deaths, cross-border exports, isolation occupancy, and
+  recoveries, with ascertainment; deaths already committed give a
+  no-onward-transmission lower bound
 
 ![](figures/fig-bvd-model.png){width="80%"}
 

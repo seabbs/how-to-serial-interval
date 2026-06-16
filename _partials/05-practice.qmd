@@ -10,7 +10,7 @@
   observed generation and serial intervals as susceptibles run out
 - **Who infected whom** is uncertain; coprimary and tertiary cases
   contaminate pairs
-- The reference cohort matters: forward versus backward intervals
+- The reference cohort matters: which event reporting is conditioned on
 - Observation is often **missing not at random**
 :::
 ::: {.column width="45%"}

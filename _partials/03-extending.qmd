@@ -68,8 +68,6 @@ Diagram: this talk, after the point-source incubation idea of
   the time-to-event literature?
 :::
 ::: {.column width="50%"}
-The same $f$, three roles:
-
 `epidist` — individual likelihood
 $$ \textstyle\prod_i f(t_i) $$
 

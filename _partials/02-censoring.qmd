@@ -1,9 +1,36 @@
 # A delay seen through censoring and truncation
 
+## How do we currently suggest people estimate and report a delay distribution?
+
+:::: {.columns}
+::: {.column width="38%"}
+- Adjust for **within-interval censoring of both events** (always)
+- **Right truncation** is the correction for dynamical
+  (epidemic-phase) bias
+- Fit **several distributions** and compare with model-fit statistics
+- Report uncertainty, and share de-identified line lists and code
+
+::: {.callout-note}
+Later, the Andes-virus analysis works through a version of this
+checklist:
+[andv-linelist-analysis](https://epiforecasts.io/andv-linelist-analysis/dev/charniga).
+:::
+
+::: {.attribution}
+Flowchart: Fig 3 of
+[Charniga et al. (2024)](https://doi.org/10.1371/journal.pcbi.1012520),
+PLOS Comput Biol, CC-BY 4.0
+:::
+:::
+::: {.column width="62%"}
+![](figures/fig-charniga-flowchart.png){height="900px"}
+:::
+::::
+
 ## One delay, built up in three steps
 
 :::: {.columns}
-::: {.column width="55%"}
+::: {.column width="40%"}
 - For now treat the serial interval as a single **event-to-event**
   delay, ignoring that it is itself composed — we return to that later
 - Daily or weekly data put both the primary (infector) and secondary
@@ -14,7 +41,7 @@
   2. secondary interval censoring
   3. right truncation
 :::
-::: {.column width="45%"}
+::: {.column width="60%"}
 ![](figures/fig-double-censoring.png){width="100%"}
 
 ::: {.attribution}

@@ -11,6 +11,8 @@
   before the infector's, for example with presymptomatic transmission
 - The GI is what *some* transmission models need; the SI is usually
   what we get to observe
+- They share a mean, but coincide most closely only without
+  presymptomatic transmission — that is what pulls them apart
 :::
 ::: {.column width="60%"}
 ![](figures/fig-gt-vs-si-timeline.png){width="100%"}
@@ -51,9 +53,8 @@ working paper)
 ::: {.column width="52%"}
 - Feeds $R_t$ through the renewal equation, and links the growth
   rate $r$ to the reproduction number $R$
-- Beyond renewal: used to **reconstruct infection times** from
-  onsets — the Andes-virus work below back-calculates who infected
-  whom and when
+- Beyond renewal: used to **reconstruct infection times** from onsets
+  by deconvolution
 - Also feeds forecasting and contact tracing
 - But the SI is a **proxy** for the generation interval, the quantity
   some transmission models need
@@ -69,32 +70,5 @@ $R$ just as the GI does.
 [Lehtinen et al. (2021)](https://doi.org/10.1098/rsif.2020.0756);
 [Wallinga & Lipsitch (2007)](https://doi.org/10.1098/rspb.2006.3754)
 :::
-:::
-::::
-
-## How do we currently suggest people estimate and report a delay distribution?
-
-:::: {.columns}
-::: {.column width="55%"}
-- Adjust for **within-interval censoring of both events** (always)
-- **Right truncation** is the correction for dynamical
-  (epidemic-phase) bias
-- Fit **several distributions** and compare with model-fit statistics
-- Report uncertainty, and share de-identified line lists and code
-
-::: {.callout-note}
-The Andes-virus analysis below works through a version of this
-checklist:
-[andv-linelist-analysis](https://epiforecasts.io/andv-linelist-analysis/dev/charniga).
-:::
-
-::: {.attribution}
-Flowchart: Fig 3 of
-[Charniga et al. (2024)](https://doi.org/10.1371/journal.pcbi.1012520),
-PLOS Comput Biol, CC-BY 4.0
-:::
-:::
-::: {.column width="45%"}
-![](figures/fig-charniga-flowchart.png){height="840px"}
 :::
 ::::

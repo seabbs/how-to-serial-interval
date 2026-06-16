@@ -169,6 +169,8 @@ Framework: Jamieson et al. (working paper)
   parameters $(\log r, \log d, m, \log\kappa)$
 - The decline $\log d$ and peak time $m$ shift under the viral-load
   prior: external information constrains weakly identified parameters
+- A natural next step: **jointly fit** the transmission pairs and the
+  viral-load data, rather than passing one in as a prior
 :::
 ::: {.column width="60%"}
 ![](figures/WH_prior_posterior_comparison_logr_logd_logkappa_m.png){width="100%"}

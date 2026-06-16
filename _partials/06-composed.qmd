@@ -66,20 +66,20 @@ end
 :::
 ::: {.column width="58%"}
 ```julia
-# additive chains of delays
-gt = Sequential(latent_period, transmission_delay)
-si = Sequential(gt, incubation_difference)
+# leaves: censored, truncated delays
+inc = double_interval_censored(Gamma(2, 1); interval = 1)
+
+# an additive chain of delays
+si = Sequential(generation_time, inc)
 
 # competing outcomes, by racing hazards
-outcome = HazardCompeting(death, discharge)
+resolve = competing(:death => death, :discharge => discharge)
 
 # a record field selects the sub-model
-delay = Select(record.kind; index = incubation,
-                            sourced = si)
+delay = selecting(:index => inc, :sourced => si)
 
-# censor + truncate the whole thing
-obs = double_interval_censored(si; upper = C,
-                               interval = 1)
+# assemble the whole record
+tree = compose((delay = delay, resolution = resolve))
 ```
 
 ::: {.attribution}
@@ -93,18 +93,19 @@ In-flight composer work:
 
 :::: {.columns}
 ::: {.column width="42%"}
-- One composed delay, several backends
-- The delay is specified once; the model type chooses how to use it
+- Composed delays back different model types
+- A delay used directly for individual or count models; dwell-time
+  delays lowered onto a reaction network for a mechanistic one
 :::
 ::: {.column width="58%"}
 ```julia
 # individual level: likelihood / simulate
-logpdf(si, t);   rand(si)
+logpdf(d, t);   rand(d)
 
 # counts: convolve with incidence (EpiNow2)
-expected = convolve(infections, si)
+expected = convolve(infections, d)
 
-# mechanistic: lower composed delays onto a
+# mechanistic: lower dwell-time delays onto a
 # Catalyst reaction network (linear-chain trick)
 using Catalyst
 seir = seir_reaction_network(latent, infectious)

@@ -2,12 +2,13 @@
 
 ## How do we currently suggest people estimate and report a delay distribution?
 
-- Adjust for interval censoring of **both** events always; add **right
-  truncation** in real time and a **dynamical** correction in a
-  fast-changing epidemic; then fit several families, compare, and
-  report with uncertainty
-
-![](figures/fig-charniga-flow-wide.png){width="100%"}
+:::: {.columns}
+::: {.column width="40%"}
+- Adjust for **within-interval censoring of both events** (always)
+- **Right truncation** is the correction for dynamical
+  (epidemic-phase) bias
+- Fit **several distributions** and compare with model-fit statistics
+- Report uncertainty, and share de-identified line lists and code
 
 ::: {.callout-note}
 Later, the Andes-virus analysis works through a version of this
@@ -16,10 +17,15 @@ checklist:
 :::
 
 ::: {.attribution}
-Flowchart after Fig 3 of
+Flowchart: Fig 3 of
 [Charniga et al. (2024)](https://doi.org/10.1371/journal.pcbi.1012520),
 PLOS Comput Biol, CC-BY 4.0
 :::
+:::
+::: {.column width="60%"}
+![](figures/fig-charniga-flowchart.png){height="1000px"}
+:::
+::::
 
 ## One delay, built up in three steps
 

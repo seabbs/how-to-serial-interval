@@ -30,8 +30,8 @@ working paper)
   see them directly
 - Symptom onsets are recorded to a **day** at best, and "onset" is
   itself imprecise: definitions vary, and recall is biased
-- So we never fully observe this picture: the events we want are
-  **interval censored**, and in real time **right truncated**
+- So we never fully observe it — we come to how we currently handle
+  that next
 - Estimating a serial interval is really estimating a delay from
   incomplete data
 :::

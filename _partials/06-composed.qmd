@@ -96,8 +96,8 @@ In-flight composer work:
 :::: {.columns}
 ::: {.column width="42%"}
 - Composed delays back different model types
-- A delay used directly for individual or count models, or lowered onto
-  a transition of a reaction network for a mechanistic one
+- Individual likelihoods; counts via convolution or reporting hazards;
+  or lowered onto a reaction network for a mechanistic model
 :::
 ::: {.column width="58%"}
 ```julia
@@ -106,6 +106,9 @@ logpdf(d, t);   rand(d)
 
 # counts: convolve with incidence (EpiNow2)
 expected = convolve(infections, d)
+
+# or as reporting hazards (epinowcast)
+h = delay_hazard(pmf)
 
 # mechanistic: lower the delay onto a transition
 # of a Catalyst reaction network (linear chain)
